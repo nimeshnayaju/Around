@@ -8,6 +8,7 @@
 import Foundation
 import CoreMotion
 import UIKit
+import os.log
 
 class Around: ObservableObject {
     
@@ -28,13 +29,18 @@ class Around: ObservableObject {
         self.startTracking()
     }
     
+    private func startTracking() {
+        os_log("Tracking user motion activity", log: OSLog.around, type: .info)
+        startTrackingActivityType()
+    }
+    
     private func periodicallyCheckIfScreenIsLocked() {
         if isWalking {
-            print("user is walking")
+            os_log("User has started walking", log: OSLog.around, type: .debug)
             // query if the screen is locked every 1 second if the person is walking
             startTimer()
         } else {
-            print("user is stationary")
+            os_log("User has stopped walking", log: OSLog.around, type: .debug)
             // if the person isn't walking, invalidate the timer
             invalidateTimer()
             self.lookAround = false
@@ -43,14 +49,14 @@ class Around: ObservableObject {
     
     private func startTimer() {
         if (elapsedTime == 0) {
-            print("starting the timer")
+            os_log("Starting the tracking timer", log: OSLog.around, type: .debug)
             self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(checkIfScreenIsLocked), userInfo: nil, repeats: true)
         }
     }
     
     private func invalidateTimer() {
         if (self.timer != nil) {
-            print("invalidating the timer")
+            os_log("Invalidating the tracking timer", log: OSLog.around, type: .debug)
             self.timer.invalidate()
             self.elapsedTime = 0
         }
@@ -59,30 +65,25 @@ class Around: ObservableObject {
     @objc private func checkIfScreenIsLocked() {
         // if the device is locked, reset the timer
         if (UIScreen.main.brightness == 0.0) {
-            print("device is locked, so resetting the timer")
+            os_log("device is locked, so resetting the timer", log: OSLog.around, type: .debug)
             invalidateTimer()
             startTimer()
         }
         // if the device is unlocked, increase the elapsed time by 1
         else {
             self.elapsedTime += 1
-            print("elapsed time: \(self.elapsedTime)")
+            os_log("Elapsed time: %@", log: OSLog.around, type: .debug, elapsedTime)
         }
         
         // notify the user to look around at the 5th iteration
         if (self.elapsedTime == 5) {
-            print("notifying the user to look around")
+            os_log("Notifying the user to look around", log: OSLog.around, type: .debug)
             self.lookAround = true
             invalidateTimer()
         }
     }
     
-    private func startTracking() {
-        print("Starting tracking")
-        startTrackingActivityType()
-    }
-    
-    func startTrackingActivityType() {
+    private func startTrackingActivityType() {
         if (CMMotionActivityManager.isActivityAvailable()) {
             activityManager.startActivityUpdates(to: OperationQueue.main) { (data) in
                 DispatchQueue.main.async {
@@ -92,24 +93,11 @@ class Around: ObservableObject {
                         } else {
                             self.isWalking = false
                         }
-//                        } else if activity.stationary {
-//                            print("user is stationary")
-//                            self.isWalking = false
-//                        } else if activity.automotive {
-//                            print("user is driving")
-//                            self.isWalking = false
-//                        } else if activity.unknown {
-//                            print("user is doing something unknown to us")
-//                            self.isWalking = false
-//                        } else if activity.running {
-//                            print("user is running")
-//                            self.isWalking = false
-//                        }
                     }
                 }
             }
         } else {
-            print("Activity tracking not available")
+            os_log("Activity tracking not available", log: OSLog.around, type: .error)
         }
     }
 }
