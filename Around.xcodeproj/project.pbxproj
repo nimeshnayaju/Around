@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		640C4DB326CCB75C006DAC12 /* Around.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C4DB226CCB75C006DAC12 /* Around.swift */; };
 		642FE63E26CDF67A009D4DB8 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FE63D26CDF67A009D4DB8 /* OSLog.swift */; };
+		648F19C226CECB5D00DACBA9 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F19C126CECB5D00DACBA9 /* LocalNotificationManager.swift */; };
+		648F19C726CED79F00DACBA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F19C626CED79F00DACBA9 /* AppDelegate.swift */; };
 		648F7C8526CC6A7C004B759B /* AroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F7C8426CC6A7C004B759B /* AroundApp.swift */; };
 		648F7C8726CC6A7C004B759B /* AroundMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F7C8626CC6A7C004B759B /* AroundMainView.swift */; };
 		648F7C8926CC6A7E004B759B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 648F7C8826CC6A7E004B759B /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 		640C4DB226CCB75C006DAC12 /* Around.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around.swift; sourceTree = "<group>"; };
 		64201C9D26CDE3FD005B9599 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		642FE63D26CDF67A009D4DB8 /* OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
+		648F19C126CECB5D00DACBA9 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		648F19C626CED79F00DACBA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		648F7C8126CC6A7C004B759B /* Around.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Around.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		648F7C8426CC6A7C004B759B /* AroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundApp.swift; sourceTree = "<group>"; };
 		648F7C8626CC6A7C004B759B /* AroundMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMainView.swift; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 				640C4DB226CCB75C006DAC12 /* Around.swift */,
 				648F7C8A26CC6A7E004B759B /* Preview Content */,
 				642FE63D26CDF67A009D4DB8 /* OSLog.swift */,
+				648F19C126CECB5D00DACBA9 /* LocalNotificationManager.swift */,
+				648F19C626CED79F00DACBA9 /* AppDelegate.swift */,
 			);
 			path = Around;
 			sourceTree = "<group>";
@@ -267,8 +273,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				648F19C726CED79F00DACBA9 /* AppDelegate.swift in Sources */,
 				640C4DB326CCB75C006DAC12 /* Around.swift in Sources */,
 				648F7C8726CC6A7C004B759B /* AroundMainView.swift in Sources */,
+				648F19C226CECB5D00DACBA9 /* LocalNotificationManager.swift in Sources */,
 				642FE63E26CDF67A009D4DB8 /* OSLog.swift in Sources */,
 				648F7C8526CC6A7C004B759B /* AroundApp.swift in Sources */,
 			);

@@ -15,14 +15,9 @@ struct AroundMainView: View {
     var body: some View {
         VStack {
             if around.isWalking {
-                Text("user is walking");
+                Text("user is walking").padding();
             } else {
-                Text("user is not walking")
-            }
-            if around.lookAround {
-                Text("Look around")
-            } else {
-                Text("No need to look around")
+                Text("user is not walking").padding()
             }
         }
     }
@@ -31,6 +26,7 @@ struct AroundMainView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let lookAround = Around()
+        
 //        lookAround.startTracking()
         AroundMainView(around: lookAround)
     }

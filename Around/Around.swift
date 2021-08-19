@@ -12,18 +12,20 @@ import os.log
 
 class Around: ObservableObject {
     
-    private var activityManager = CMMotionActivityManager()
+    private let activityManager = CMMotionActivityManager()
+    private let notificationManager = LocalNotificationManager()
     private var timer: Timer!
     private var elapsedTime:Int16 = 0
     
-    @Published var isWalking = false {
+    @Published private (set) var isWalking = false {
         didSet {
-            if (isWalking != oldValue) {
-                periodicallyCheckIfScreenIsLocked()
+            if shouldStartTimer(previousActivity: oldValue) {
+                startTimer()
+            } else if shouldInvalidateTimer(previousActivity: oldValue) {
+                invalidateTimer()
             }
         }
     }
-    @Published var lookAround = false
     
     init() {
         self.startTracking()
@@ -34,24 +36,24 @@ class Around: ObservableObject {
         startTrackingActivityType()
     }
     
-    private func periodicallyCheckIfScreenIsLocked() {
-        if isWalking {
-            os_log("User has started walking", log: OSLog.around, type: .debug)
-            // query if the screen is locked every 1 second if the person is walking
-            startTimer()
-        } else {
-            os_log("User has stopped walking", log: OSLog.around, type: .debug)
-            // if the person isn't walking, invalidate the timer
-            invalidateTimer()
-            self.lookAround = false
-        }
+    private func shouldStartTimer(previousActivity:Bool) -> Bool {
+        // only start timer if:
+        // (1) the user is walking AND the screen is not locked AND a timer hasn't been set already
+        // OR
+        // (2) the user was previously stationary and has now been detected walking
+        return (isWalking && !isScreenLocked() && elapsedTime == 0) || (isWalking && isWalking != previousActivity)
+    }
+    
+    private func shouldInvalidateTimer(previousActivity:Bool) -> Bool {
+        // invalidate the timer if:
+        // the user was previously walking and has now been detected not walking
+        return (!isWalking && isWalking != previousActivity)
     }
     
     private func startTimer() {
-        if (elapsedTime == 0) {
-            os_log("Starting the tracking timer", log: OSLog.around, type: .debug)
-            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(checkIfScreenIsLocked), userInfo: nil, repeats: true)
-        }
+        os_log("Starting the tracking timer", log: OSLog.around, type: .debug)
+        // query if the screen is locked every 1 second
+        self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(checkIfScreenIsLocked), userInfo: nil, repeats: true)
     }
     
     private func invalidateTimer() {
@@ -63,24 +65,27 @@ class Around: ObservableObject {
     }
     
     @objc private func checkIfScreenIsLocked() {
-        // if the device is locked, reset the timer
-        if (UIScreen.main.brightness == 0.0) {
-            os_log("device is locked, so resetting the timer", log: OSLog.around, type: .debug)
+        // if the device is locked, invalidate the timer
+        if (isScreenLocked()) {
+            os_log("device is locked", log: OSLog.around, type: .debug)
             invalidateTimer()
-            startTimer()
         }
         // if the device is unlocked, increase the elapsed time by 1
         else {
             self.elapsedTime += 1
-            os_log("Elapsed time: %@", log: OSLog.around, type: .debug, elapsedTime)
+            os_log("Elapsed time: %d", log: OSLog.around, type: .debug, self.elapsedTime)
         }
         
         // notify the user to look around at the 5th iteration
         if (self.elapsedTime == 5) {
             os_log("Notifying the user to look around", log: OSLog.around, type: .debug)
-            self.lookAround = true
+            notificationManager.sendLookAroundNotification()
             invalidateTimer()
         }
+    }
+    
+    private func isScreenLocked() -> Bool {
+        return UIScreen.main.brightness == 0.0
     }
     
     private func startTrackingActivityType() {
@@ -90,8 +95,10 @@ class Around: ObservableObject {
                     if let activity = data {
                         if activity.walking {
                             self.isWalking = true
+                            os_log("Walking activity detected", log: OSLog.around, type: .debug)
                         } else {
                             self.isWalking = false
+                            os_log("Non-walking activity detected", log: OSLog.around, type: .debug)
                         }
                     }
                 }

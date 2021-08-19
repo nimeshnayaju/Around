@@ -8,5 +8,5 @@
 import os.log
 
 extension OSLog {
-    static let around = OSLog(subsystem: "com.aroundapp.around", category: "activityMonitor")
+    static let around = OSLog(subsystem: "com.aroundapp.around", category: "around")
 }

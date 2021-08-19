@@ -9,8 +9,9 @@ import SwiftUI
 
 @main
 struct AroundApp: App {
-    let around = Around()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
+    let around = Around()
     var body: some Scene {
         WindowGroup {
             AroundMainView(around: around)
