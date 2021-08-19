@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		640C4DB326CCB75C006DAC12 /* Around.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C4DB226CCB75C006DAC12 /* Around.swift */; };
+		642FE63E26CDF67A009D4DB8 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FE63D26CDF67A009D4DB8 /* OSLog.swift */; };
 		648F7C8526CC6A7C004B759B /* AroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F7C8426CC6A7C004B759B /* AroundApp.swift */; };
 		648F7C8726CC6A7C004B759B /* AroundMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F7C8626CC6A7C004B759B /* AroundMainView.swift */; };
 		648F7C8926CC6A7E004B759B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 648F7C8826CC6A7E004B759B /* Assets.xcassets */; };
@@ -35,6 +36,8 @@
 
 /* Begin PBXFileReference section */
 		640C4DB226CCB75C006DAC12 /* Around.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around.swift; sourceTree = "<group>"; };
+		64201C9D26CDE3FD005B9599 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		642FE63D26CDF67A009D4DB8 /* OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
 		648F7C8126CC6A7C004B759B /* Around.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Around.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		648F7C8426CC6A7C004B759B /* AroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundApp.swift; sourceTree = "<group>"; };
 		648F7C8626CC6A7C004B759B /* AroundMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMainView.swift; sourceTree = "<group>"; };
@@ -77,6 +80,7 @@
 		648F7C7826CC6A7C004B759B = {
 			isa = PBXGroup;
 			children = (
+				64201C9D26CDE3FD005B9599 /* README.md */,
 				648F7C8326CC6A7C004B759B /* Around */,
 				648F7C9526CC6A7F004B759B /* AroundTests */,
 				648F7CA026CC6A7F004B759B /* AroundUITests */,
@@ -103,6 +107,7 @@
 				648F7C8D26CC6A7E004B759B /* Info.plist */,
 				640C4DB226CCB75C006DAC12 /* Around.swift */,
 				648F7C8A26CC6A7E004B759B /* Preview Content */,
+				642FE63D26CDF67A009D4DB8 /* OSLog.swift */,
 			);
 			path = Around;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 			files = (
 				640C4DB326CCB75C006DAC12 /* Around.swift in Sources */,
 				648F7C8726CC6A7C004B759B /* AroundMainView.swift in Sources */,
+				642FE63E26CDF67A009D4DB8 /* OSLog.swift in Sources */,
 				648F7C8526CC6A7C004B759B /* AroundApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
