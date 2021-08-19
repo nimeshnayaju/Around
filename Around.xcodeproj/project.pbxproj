@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		640C4DB326CCB75C006DAC12 /* Around.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C4DB226CCB75C006DAC12 /* Around.swift */; };
 		648F7C8526CC6A7C004B759B /* AroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F7C8426CC6A7C004B759B /* AroundApp.swift */; };
-		648F7C8726CC6A7C004B759B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F7C8626CC6A7C004B759B /* ContentView.swift */; };
+		648F7C8726CC6A7C004B759B /* AroundMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F7C8626CC6A7C004B759B /* AroundMainView.swift */; };
 		648F7C8926CC6A7E004B759B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 648F7C8826CC6A7E004B759B /* Assets.xcassets */; };
 		648F7C8C26CC6A7E004B759B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 648F7C8B26CC6A7E004B759B /* Preview Assets.xcassets */; };
 		648F7C9726CC6A7F004B759B /* AroundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F7C9626CC6A7F004B759B /* AroundTests.swift */; };
@@ -33,9 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		640C4DB226CCB75C006DAC12 /* Around.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around.swift; sourceTree = "<group>"; };
 		648F7C8126CC6A7C004B759B /* Around.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Around.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		648F7C8426CC6A7C004B759B /* AroundApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundApp.swift; sourceTree = "<group>"; };
-		648F7C8626CC6A7C004B759B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		648F7C8626CC6A7C004B759B /* AroundMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundMainView.swift; sourceTree = "<group>"; };
 		648F7C8826CC6A7E004B759B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		648F7C8B26CC6A7E004B759B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		648F7C8D26CC6A7E004B759B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,9 +98,10 @@
 			isa = PBXGroup;
 			children = (
 				648F7C8426CC6A7C004B759B /* AroundApp.swift */,
-				648F7C8626CC6A7C004B759B /* ContentView.swift */,
 				648F7C8826CC6A7E004B759B /* Assets.xcassets */,
+				648F7C8626CC6A7C004B759B /* AroundMainView.swift */,
 				648F7C8D26CC6A7E004B759B /* Info.plist */,
+				640C4DB226CCB75C006DAC12 /* Around.swift */,
 				648F7C8A26CC6A7E004B759B /* Preview Content */,
 			);
 			path = Around;
@@ -259,7 +262,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				648F7C8726CC6A7C004B759B /* ContentView.swift in Sources */,
+				640C4DB326CCB75C006DAC12 /* Around.swift in Sources */,
+				648F7C8726CC6A7C004B759B /* AroundMainView.swift in Sources */,
 				648F7C8526CC6A7C004B759B /* AroundApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,6 +423,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Around/Preview Content\"";
+				DEVELOPMENT_TEAM = 7WGUUWC44M;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Around/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -426,7 +431,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Around.Around;
+				PRODUCT_BUNDLE_IDENTIFIER = AroundApp.Around;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -440,6 +445,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Around/Preview Content\"";
+				DEVELOPMENT_TEAM = 7WGUUWC44M;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Around/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -447,7 +453,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Around.Around;
+				PRODUCT_BUNDLE_IDENTIFIER = AroundApp.Around;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
