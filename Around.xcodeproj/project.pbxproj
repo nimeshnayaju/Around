@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		640C4DB326CCB75C006DAC12 /* Around.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C4DB226CCB75C006DAC12 /* Around.swift */; };
+		640C4DB326CCB75C006DAC12 /* LookAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C4DB226CCB75C006DAC12 /* LookAround.swift */; };
 		642FE63E26CDF67A009D4DB8 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FE63D26CDF67A009D4DB8 /* OSLog.swift */; };
+		644A044B26DC6CAA00305A61 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644A044A26DC6CAA00305A61 /* MapView.swift */; };
+		644A045626DC7DD700305A61 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644A045526DC7DD700305A61 /* HomeMapView.swift */; };
+		644FE99726D7F54200DABC8C /* CLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FE99626D7F54200DABC8C /* CLLocationManager.swift */; };
+		647FE93126D97C69005D8F4C /* AuthorizationPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647FE93026D97C68005D8F4C /* AuthorizationPublisher.swift */; };
+		648D8DA026D17E9500E3C30E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648D8D9F26D17E9500E3C30E /* LocationManager.swift */; };
+		648D8DA826D1F10700E3C30E /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648D8DA726D1F10700E3C30E /* ActivityManager.swift */; };
 		648F19C226CECB5D00DACBA9 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F19C126CECB5D00DACBA9 /* LocalNotificationManager.swift */; };
 		648F19C726CED79F00DACBA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F19C626CED79F00DACBA9 /* AppDelegate.swift */; };
 		648F7C8526CC6A7C004B759B /* AroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F7C8426CC6A7C004B759B /* AroundApp.swift */; };
@@ -17,6 +23,8 @@
 		648F7C8C26CC6A7E004B759B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 648F7C8B26CC6A7E004B759B /* Preview Assets.xcassets */; };
 		648F7C9726CC6A7F004B759B /* AroundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F7C9626CC6A7F004B759B /* AroundTests.swift */; };
 		648F7CA226CC6A7F004B759B /* AroundUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F7CA126CC6A7F004B759B /* AroundUITests.swift */; };
+		64BF73CA26D3252000F153E1 /* Around.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BF73C926D3252000F153E1 /* Around.swift */; };
+		64E6216E26D6E2C00073F4C9 /* LocationPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E6216D26D6E2C00073F4C9 /* LocationPublisher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,9 +45,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		640C4DB226CCB75C006DAC12 /* Around.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around.swift; sourceTree = "<group>"; };
+		640C4DB226CCB75C006DAC12 /* LookAround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookAround.swift; sourceTree = "<group>"; };
 		64201C9D26CDE3FD005B9599 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		642FE63D26CDF67A009D4DB8 /* OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
+		644A044A26DC6CAA00305A61 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		644A045526DC7DD700305A61 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
+		644FE99626D7F54200DABC8C /* CLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManager.swift; sourceTree = "<group>"; };
+		647FE93026D97C68005D8F4C /* AuthorizationPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPublisher.swift; sourceTree = "<group>"; };
+		648D8D9F26D17E9500E3C30E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		648D8DA726D1F10700E3C30E /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; };
 		648F19C126CECB5D00DACBA9 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		648F19C626CED79F00DACBA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		648F7C8126CC6A7C004B759B /* Around.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Around.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +68,8 @@
 		648F7C9D26CC6A7F004B759B /* AroundUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AroundUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		648F7CA126CC6A7F004B759B /* AroundUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AroundUITests.swift; sourceTree = "<group>"; };
 		648F7CA326CC6A7F004B759B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64BF73C926D3252000F153E1 /* Around.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Around.swift; sourceTree = "<group>"; };
+		64E6216D26D6E2C00073F4C9 /* LocationPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPublisher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +97,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6407D8B026D2E46B00E604BB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				646A092A26D734B500687690 /* LocationManager */,
+				64BF73C926D3252000F153E1 /* Around.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		646A092A26D734B500687690 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				64E6216D26D6E2C00073F4C9 /* LocationPublisher.swift */,
+				644FE99626D7F54200DABC8C /* CLLocationManager.swift */,
+				647FE93026D97C68005D8F4C /* AuthorizationPublisher.swift */,
+			);
+			path = LocationManager;
+			sourceTree = "<group>";
+		};
 		648F7C7826CC6A7C004B759B = {
 			isa = PBXGroup;
 			children = (
@@ -105,15 +140,18 @@
 		648F7C8326CC6A7C004B759B /* Around */ = {
 			isa = PBXGroup;
 			children = (
+				649F8BDE26DB3A0F005FC57A /* Views */,
+				6407D8B026D2E46B00E604BB /* ViewModel */,
 				648F7C8426CC6A7C004B759B /* AroundApp.swift */,
 				648F7C8826CC6A7E004B759B /* Assets.xcassets */,
-				648F7C8626CC6A7C004B759B /* AroundMainView.swift */,
+				648D8D9F26D17E9500E3C30E /* LocationManager.swift */,
 				648F7C8D26CC6A7E004B759B /* Info.plist */,
-				640C4DB226CCB75C006DAC12 /* Around.swift */,
+				640C4DB226CCB75C006DAC12 /* LookAround.swift */,
 				648F7C8A26CC6A7E004B759B /* Preview Content */,
 				642FE63D26CDF67A009D4DB8 /* OSLog.swift */,
 				648F19C126CECB5D00DACBA9 /* LocalNotificationManager.swift */,
 				648F19C626CED79F00DACBA9 /* AppDelegate.swift */,
+				648D8DA726D1F10700E3C30E /* ActivityManager.swift */,
 			);
 			path = Around;
 			sourceTree = "<group>";
@@ -142,6 +180,16 @@
 				648F7CA326CC6A7F004B759B /* Info.plist */,
 			);
 			path = AroundUITests;
+			sourceTree = "<group>";
+		};
+		649F8BDE26DB3A0F005FC57A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				648F7C8626CC6A7C004B759B /* AroundMainView.swift */,
+				644A044A26DC6CAA00305A61 /* MapView.swift */,
+				644A045526DC7DD700305A61 /* HomeMapView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,11 +321,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				648D8DA826D1F10700E3C30E /* ActivityManager.swift in Sources */,
+				644A045626DC7DD700305A61 /* HomeMapView.swift in Sources */,
 				648F19C726CED79F00DACBA9 /* AppDelegate.swift in Sources */,
-				640C4DB326CCB75C006DAC12 /* Around.swift in Sources */,
+				64BF73CA26D3252000F153E1 /* Around.swift in Sources */,
+				640C4DB326CCB75C006DAC12 /* LookAround.swift in Sources */,
 				648F7C8726CC6A7C004B759B /* AroundMainView.swift in Sources */,
+				644A044B26DC6CAA00305A61 /* MapView.swift in Sources */,
+				648D8DA026D17E9500E3C30E /* LocationManager.swift in Sources */,
+				647FE93126D97C69005D8F4C /* AuthorizationPublisher.swift in Sources */,
 				648F19C226CECB5D00DACBA9 /* LocalNotificationManager.swift in Sources */,
 				642FE63E26CDF67A009D4DB8 /* OSLog.swift in Sources */,
+				644FE99726D7F54200DABC8C /* CLLocationManager.swift in Sources */,
+				64E6216E26D6E2C00073F4C9 /* LocationPublisher.swift in Sources */,
 				648F7C8526CC6A7C004B759B /* AroundApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
