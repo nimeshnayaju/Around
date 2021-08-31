@@ -7,14 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		640C4DB326CCB75C006DAC12 /* LookAround.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640C4DB226CCB75C006DAC12 /* LookAround.swift */; };
 		642FE63E26CDF67A009D4DB8 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642FE63D26CDF67A009D4DB8 /* OSLog.swift */; };
 		644A044B26DC6CAA00305A61 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644A044A26DC6CAA00305A61 /* MapView.swift */; };
 		644A045626DC7DD700305A61 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644A045526DC7DD700305A61 /* HomeMapView.swift */; };
 		644FE99726D7F54200DABC8C /* CLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644FE99626D7F54200DABC8C /* CLLocationManager.swift */; };
 		647FE93126D97C69005D8F4C /* AuthorizationPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647FE93026D97C68005D8F4C /* AuthorizationPublisher.swift */; };
-		648D8DA026D17E9500E3C30E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648D8D9F26D17E9500E3C30E /* LocationManager.swift */; };
-		648D8DA826D1F10700E3C30E /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648D8DA726D1F10700E3C30E /* ActivityManager.swift */; };
 		648F19C226CECB5D00DACBA9 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F19C126CECB5D00DACBA9 /* LocalNotificationManager.swift */; };
 		648F19C726CED79F00DACBA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F19C626CED79F00DACBA9 /* AppDelegate.swift */; };
 		648F7C8526CC6A7C004B759B /* AroundApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648F7C8426CC6A7C004B759B /* AroundApp.swift */; };
@@ -45,15 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		640C4DB226CCB75C006DAC12 /* LookAround.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookAround.swift; sourceTree = "<group>"; };
 		64201C9D26CDE3FD005B9599 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		642FE63D26CDF67A009D4DB8 /* OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
 		644A044A26DC6CAA00305A61 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		644A045526DC7DD700305A61 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
 		644FE99626D7F54200DABC8C /* CLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManager.swift; sourceTree = "<group>"; };
 		647FE93026D97C68005D8F4C /* AuthorizationPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPublisher.swift; sourceTree = "<group>"; };
-		648D8D9F26D17E9500E3C30E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		648D8DA726D1F10700E3C30E /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; };
 		648F19C126CECB5D00DACBA9 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		648F19C626CED79F00DACBA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		648F7C8126CC6A7C004B759B /* Around.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Around.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +110,15 @@
 			path = LocationManager;
 			sourceTree = "<group>";
 		};
+		647C2B3B26DEC98D0088ACD0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				648F19C126CECB5D00DACBA9 /* LocalNotificationManager.swift */,
+				642FE63D26CDF67A009D4DB8 /* OSLog.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		648F7C7826CC6A7C004B759B = {
 			isa = PBXGroup;
 			children = (
@@ -140,18 +143,14 @@
 		648F7C8326CC6A7C004B759B /* Around */ = {
 			isa = PBXGroup;
 			children = (
+				647C2B3B26DEC98D0088ACD0 /* Helpers */,
 				649F8BDE26DB3A0F005FC57A /* Views */,
 				6407D8B026D2E46B00E604BB /* ViewModel */,
 				648F7C8426CC6A7C004B759B /* AroundApp.swift */,
 				648F7C8826CC6A7E004B759B /* Assets.xcassets */,
-				648D8D9F26D17E9500E3C30E /* LocationManager.swift */,
 				648F7C8D26CC6A7E004B759B /* Info.plist */,
-				640C4DB226CCB75C006DAC12 /* LookAround.swift */,
 				648F7C8A26CC6A7E004B759B /* Preview Content */,
-				642FE63D26CDF67A009D4DB8 /* OSLog.swift */,
-				648F19C126CECB5D00DACBA9 /* LocalNotificationManager.swift */,
 				648F19C626CED79F00DACBA9 /* AppDelegate.swift */,
-				648D8DA726D1F10700E3C30E /* ActivityManager.swift */,
 			);
 			path = Around;
 			sourceTree = "<group>";
@@ -321,14 +320,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				648D8DA826D1F10700E3C30E /* ActivityManager.swift in Sources */,
 				644A045626DC7DD700305A61 /* HomeMapView.swift in Sources */,
 				648F19C726CED79F00DACBA9 /* AppDelegate.swift in Sources */,
 				64BF73CA26D3252000F153E1 /* Around.swift in Sources */,
-				640C4DB326CCB75C006DAC12 /* LookAround.swift in Sources */,
 				648F7C8726CC6A7C004B759B /* AroundMainView.swift in Sources */,
 				644A044B26DC6CAA00305A61 /* MapView.swift in Sources */,
-				648D8DA026D17E9500E3C30E /* LocationManager.swift in Sources */,
 				647FE93126D97C69005D8F4C /* AuthorizationPublisher.swift in Sources */,
 				648F19C226CECB5D00DACBA9 /* LocalNotificationManager.swift in Sources */,
 				642FE63E26CDF67A009D4DB8 /* OSLog.swift in Sources */,

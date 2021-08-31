@@ -58,6 +58,7 @@ struct AroundMainView: View {
                                             .stroke(lineWidth: 1.5)
                                     )
                                 }
+                            .padding(.bottom)
                         } else {
                             Text("Around has been set up successfully!")
                                 .fontWeight(.regular)
@@ -75,12 +76,15 @@ struct AroundMainView: View {
                                             .stroke(lineWidth: 1.5)
                                     )
                                 }
+                            .padding(.bottom)
                         }
 
                     }
                 }
+                
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     private func getCenterCoordinate() -> CLLocationCoordinate2D {
