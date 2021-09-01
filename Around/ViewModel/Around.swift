@@ -16,7 +16,6 @@ class Around: ObservableObject {
 
     var subscribers = Set<AnyCancellable>()
     var locationSubsriber: AnyCancellable?
-    
 
     @Published private(set) var location: CLLocation?
     @Published private(set) var authorizationStatus: CLAuthorizationStatus?
@@ -27,9 +26,11 @@ class Around: ObservableObject {
     private let radius = 0.0002
     private var motionTracking = false
     private var screenStatusTracking = false
+    private var locationTracking = false
     private var screenTrackingTimer: Timer?
     private var elapsedTime:Int16 = 0
     private var isWalking = false
+    private(set) var isAuthorized = false
     
     private func startFetchingLocationData() {
         CLLocationManager.publishAuthorizationStatus()
@@ -37,43 +38,70 @@ class Around: ObservableObject {
                 self.authorizationStatus = status
                 switch status {
                 case .authorizedAlways:
-                    os_log("Authorization to fetch background updates received. Subscribing to location updates", log: OSLog.location, type: .debug)
-                    self.locationSubsriber = CLLocationManager.publishLocation()
-                        .sink(receiveCompletion: { error in
-                            os_log("Error while fetching location", log: OSLog.location, type: .debug)
-                        }, receiveValue: { location in
-                            os_log("Location: %@", log: OSLog.location, type: .debug, location.description)
-                            self.location = location
-                            //  if the location is not within the circle representing the home building
-                            if (!self.isInsideCircle(location.coordinate)) {
-                                // only start tracking motion activities if motion tracking isn't started already
-                                if !self.motionTracking {
-                                    os_log("User located outside their home building. Starting motion tracking", log: OSLog.around, type: .debug)
-                                    self.startTrackingActivityType()
-                                }
-                            } else {
-                                // stop tracking motion activities if motion tracking has been started
-                                if self.motionTracking {
-                                    os_log("User located inside their home building. Stopping motion updates", log: OSLog.around, type: .debug)
-                                    self.stopTrackingActivityType()
-                                }
-                            }
-                        })
-                case .authorizedWhenInUse, .denied, .notDetermined, .restricted:
+                    os_log("Authorization to fetch background updates received", log: OSLog.around, type: .debug)
+                    self.isAuthorized = true
+                case .authorizedWhenInUse, .denied, .restricted:
                     os_log("Not enough permission to fetch background location information", log: OSLog.location, type: .debug)
+                    self.isAuthorized = false
+                    self.unsubscribeFromLocationUpdates()
+                case .notDetermined:
+                    self.isAuthorized = false
                     self.location = nil
-                    self.locationSubsriber?.cancel()
-                    if self.motionTracking {
-                        self.stopTrackingActivityType()
-                    }
-                    if self.screenStatusTracking {
-                        self.stopTrackingScreenStatus()
-                    }
+                    os_log("Location authorization not determined", log: OSLog.location, type: .debug)
                 @unknown default:
+                    self.isAuthorized = false
                     self.location = nil
                 }
             }
             .store(in: &subscribers)
+    }
+    
+    private func subscribeToLocationUpdates() {
+        // if location tracking hasn't started yet and if the app has received the correct authorization, start subscribing to location updates, else do nothing
+        if !self.locationTracking && isAuthorized {
+            os_log("Subscribing to location updates", log: OSLog.around, type: .debug)
+            self.locationSubsriber = CLLocationManager.publishLocation()
+                .sink(receiveCompletion: { error in
+                    os_log("Error while fetching location", log: OSLog.location, type: .debug)
+                }, receiveValue: { location in
+                    os_log("Location: %@", log: OSLog.location, type: .debug, location.description)
+                    self.location = location
+                    self.locationTracking = true
+        
+                    // if home hasn't been set at all, no need to check if the user is inside their home building, otherwise
+                    // only start tracking motion activities if the location is not within the circle representing the home building
+                    if (self.home == nil || !self.isInsideCircle(location.coordinate)) {
+                        // only start tracking motion activities if motion tracking isn't started already
+                        if !self.motionTracking {
+                            os_log("Starting motion tracking", log: OSLog.around, type: .debug)
+                            self.startTrackingActivityType()
+                        }
+                    } else {
+                        // stop tracking motion activities if motion tracking has been started
+                        if self.motionTracking {
+                            os_log("User located inside their home building. Stopping motion updates", log: OSLog.around, type: .debug)
+                            self.stopTrackingActivityType()
+                        }
+                    }
+                })
+        } else {
+            os_log("Not enough permission to fetch background location updates", log: OSLog.around, type: .debug)
+        }
+    }
+    
+    private func unsubscribeFromLocationUpdates() {
+        os_log("Unsubscribing from location updates", log: OSLog.around, type: .debug)
+        self.location = nil
+        if locationTracking {
+            self.locationSubsriber?.cancel()
+            self.locationTracking = false
+        }
+        if self.motionTracking {
+            self.stopTrackingActivityType()
+        }
+        if self.screenStatusTracking {
+            self.stopTrackingScreenStatus()
+        }
     }
     
     /*
@@ -175,5 +203,13 @@ class Around: ObservableObject {
     func setHomeCoordinates(coordinate: CLLocationCoordinate2D) {
         os_log("Home coordinates set to (%@, %@)", log: OSLog.around, type: .debug, coordinate.latitude.description, coordinate.longitude.description)
         self.home = coordinate
+    }
+    
+    func receiveLocationUpdates(_ value: Bool) {
+        if value {
+            self.subscribeToLocationUpdates()
+        } else {
+            self.unsubscribeFromLocationUpdates()
+        }
     }
 }
