@@ -24,12 +24,12 @@ class Around: ObservableObject {
     
     private let activityManager = CMMotionActivityManager()
     private let notificationManager = LocalNotificationManager()
-    private let radius = 0.00016
-//    private let radius = 0.002
+    private let radius = 0.0002
     private var motionTracking = false
     private var screenStatusTracking = false
     private var screenTrackingTimer: Timer?
     private var elapsedTime:Int16 = 0
+    private var isWalking = false
     
     private func startFetchingLocationData() {
         CLLocationManager.publishAuthorizationStatus()
@@ -95,15 +95,21 @@ class Around: ObservableObject {
                     if let activity = data {
                         // if the user is detected walking
                         if activity.walking {
-                            os_log("Walking activity detected", log: OSLog.motion, type: .debug)
-                            // start tracking screen status if screen tracking isn't start already
-                            if !self.screenStatusTracking {
-                                os_log("Starting screen status tracking", log: OSLog.around, type: .debug)
-                                self.startTrackingScreenStatus()
+                            if !self.isWalking {
+                                self.isWalking = true
+                                os_log("Walking activity detected", log: OSLog.motion, type: .debug)
+                                // start tracking screen status if screen tracking isn't start already
+                                if !self.screenStatusTracking {
+                                    os_log("Starting screen status tracking", log: OSLog.around, type: .debug)
+                                    self.startTrackingScreenStatus()
+                                }
                             }
                         } else {
-                            os_log("Non-walking activity detected", log: OSLog.motion, type: .debug)
-                            self.stopTrackingScreenStatus()
+                            if self.isWalking {
+                                os_log("Non-walking activity detected", log: OSLog.motion, type: .debug)
+                                self.isWalking = false
+                                self.stopTrackingScreenStatus()
+                            }
                         }
                     }
                 }
@@ -121,6 +127,7 @@ class Around: ObservableObject {
     @objc private func screenStatusTracker() {
         // if the screen is locked, invalidate and restart the timer
         if isScreenLocked() {
+            os_log("Resetting screen status tracker", log: OSLog.screen, type: .debug, self.elapsedTime)
             // invalidate the timer
             self.elapsedTime = 0
             self.screenTrackingTimer?.invalidate()

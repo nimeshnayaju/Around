@@ -100,6 +100,13 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		64153E3426DECEDF00CE0C7D /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		646A092A26D734B500687690 /* LocationManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +129,7 @@
 		648F7C7826CC6A7C004B759B = {
 			isa = PBXGroup;
 			children = (
+				64153E3426DECEDF00CE0C7D /* Screenshots */,
 				64201C9D26CDE3FD005B9599 /* README.md */,
 				648F7C8326CC6A7C004B759B /* Around */,
 				648F7C9526CC6A7F004B759B /* AroundTests */,
