@@ -11,7 +11,6 @@ import MapKit
 struct AroundMainView: View {
 
     @ObservedObject var around: Around
-    @State var receiveLocationUpdates = false
     @State var isAuthorized = false
     @State var requestPermissionAlert = false
     @State var cannotStartAround = false
@@ -20,40 +19,35 @@ struct AroundMainView: View {
         NavigationView {
             Form {
                 Section(header: Text("Permissions").fontWeight(.bold), footer: Text("Around sends notifications to look around when you're walking and using your phone.").font(.caption2)) {
-                    
-                    if let status = around.authorizationStatus {
-                        if status == .authorizedAlways {
-                            Text("Background location authorization received")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                        } else if status == .notDetermined {
-                            Text("Processing...")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                        } else {
-                            requestAuthorizationSettingsButton
-                        }
-                    } else {
+                     
+                    switch around.authorizationStatus {
+                    case .authorizedAlways:
+                        Text("Background location authorization received")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    case .notDetermined:
                         requestAuthorizationButton
+                    default:
+                        requestAuthorizationSettingsButton
                     }
                     
-                    Toggle(isOn: $receiveLocationUpdates) {
+                    Toggle(isOn: $around.locationTracking, label: {
                         Text("Use Around").font(.subheadline)
-                            .onChange(of: receiveLocationUpdates) { shouldReceiveLocationUpdates in
+                            .onChange(of: around.locationTracking) { shouldReceiveLocationUpdates in
                                 if shouldReceiveLocationUpdates {
-                                    if around.isAuthorized {
+                                    if around.isAuthorized() {
                                         around.receiveLocationUpdates(true)
                                     } else {
                                         self.cannotStartAround = true
-                                        self.receiveLocationUpdates = false
+                                        around.locationTracking = false
                                     }
                                 } else {
-                                    if around.isAuthorized {
+                                    if around.isAuthorized() {
                                         around.receiveLocationUpdates(false)
                                     }
                                 }
                             }
-                    }
+                    })
                     .toggleStyle(CheckboxToggleStyle())
                     .alert(isPresented: $cannotStartAround, content: {
                         Alert(
@@ -64,8 +58,8 @@ struct AroundMainView: View {
                     })
                 }
                 Section(header: Text("Annotation (Optional)").fontWeight(.bold), footer: Text("Annotate to disable Around notifications when you're inside your home building.").font(.caption2)) {
-                    if let home = around.home {
-                        NavigationLink(destination: HomeMapView(around: around, centerCoordinate: getCenterCoordinate(), locations: [MKPointAnnotation(home)])) {
+                    if let home = around.getHomeCordinate() {
+                        NavigationLink(destination: HomeMapView(around: around, centerCoordinate: around.getCurrentCoordinates(), locations: [MKPointAnnotation(home)])) {
                             Text("Update your home location").font(.subheadline)
                         }
                         HStack {
@@ -76,7 +70,7 @@ struct AroundMainView: View {
                         }
                         .font(.subheadline)
                     } else {
-                        NavigationLink(destination: HomeMapView(around: around, centerCoordinate: getCenterCoordinate())) {
+                        NavigationLink(destination: HomeMapView(around: around, centerCoordinate: around.getCurrentCoordinates())) {
                             Text("Annotate your home location").font(.subheadline)
                         }
                     }
@@ -85,14 +79,6 @@ struct AroundMainView: View {
             .navigationBarTitle(Text("Around"))
         }
         .navigationViewStyle(StackNavigationViewStyle())
-    }
-    
-    private func getCenterCoordinate() -> CLLocationCoordinate2D {
-        if around.location != nil {
-            return around.location!.coordinate
-        } else {
-            return CLLocationCoordinate2D()
-        }
     }
     
     private var requestAuthorizationButton: some View {

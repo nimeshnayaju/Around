@@ -67,7 +67,7 @@ struct HomeMapView: View {
                 .padding()
         })
         .alert(isPresented: $homeIsSelected, content: {
-            Alert(title: Text("Home building annotated"), message: Text("Around has ben set up successfully. You'll start receiving notifications from Around"), dismissButton: Alert.Button.default(Text("Dismiss")))
+            Alert(title: Text("Home building annotated"), message: Text("You won't receive notifications when you're within your home location"), dismissButton: Alert.Button.default(Text("Dismiss")))
         })
         .background(Color.black.opacity(0.75))
         .foregroundColor(.white)

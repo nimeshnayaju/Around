@@ -15,8 +15,8 @@ extension CLLocationManager {
         return publisher.eraseToAnyPublisher()
     }
     
-    static func publishAuthorizationStatus() -> AnyPublisher<CLAuthorizationStatus, Never> {
-        let publisher = AuthorizationPublisher(locationManager: CLLocationManager())
+    static func publishAuthorizationStatus(locationManager: CLLocationManager) -> AnyPublisher<CLAuthorizationStatus, Never> {
+        let publisher = AuthorizationPublisher(locationManager: locationManager)
         return publisher.eraseToAnyPublisher()
     }
 }
