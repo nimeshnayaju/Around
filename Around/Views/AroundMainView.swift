@@ -57,7 +57,7 @@ struct AroundMainView: View {
                         )
                     })
                 }
-                Section(header: Text("Annotation (Optional)").fontWeight(.bold), footer: Text("Annotate to disable Around notifications when you're inside your home building.").font(.caption2)) {
+                Section(header: Text("Preferences (Optional)").fontWeight(.bold), footer: Text("Annotate to disable Around notifications when you're inside your home building.").font(.caption2)) {
                     if let home = around.getHomeCordinate() {
                         NavigationLink(destination: HomeMapView(around: around, centerCoordinate: around.getCurrentCoordinates(), locations: [MKPointAnnotation(home)])) {
                             Text("Update your home location").font(.subheadline)
@@ -74,6 +74,10 @@ struct AroundMainView: View {
                             Text("Annotate your home location").font(.subheadline)
                         }
                     }
+                    Stepper(value: $around.notifyAfterInSeconds, in: Around.notifyMin...Around.notifyMax) {
+                        Text("Notify after: \(around.notifyAfterInSeconds) seconds")
+                    }.font(.subheadline)
+
                 }
             }
             .navigationBarTitle(Text("Around"))

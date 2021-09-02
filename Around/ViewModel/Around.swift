@@ -35,6 +35,14 @@ class Around: ObservableObject {
     private let activityManager = CMMotionActivityManager()
     private let notificationManager = LocalNotificationManager()
     private let locationManager = CLLocationManager()
+    @Published var notifyAfterInSeconds = Around.notifyDefault {
+        didSet {
+            if notifyAfterInSeconds < Around.notifyMin || notifyAfterInSeconds > Around.notifyMax {
+                notifyAfterInSeconds = Around.notifyDefault
+            }
+            os_log("Setting notification time to %d", log: OSLog.around, type: .debug, notifyAfterInSeconds)
+        }
+    }
     private let radius = 0.0002
     private var motionTrackingHasStarted = false
     private var screenStatusTrackingHasStarted = false
@@ -43,6 +51,9 @@ class Around: ObservableObject {
     private var isWalking = false
     
     private static var locationTrackingKey = "locationTracking"
+    private(set) static var notifyMax = 15
+    private(set) static var notifyMin = 5
+    private(set) static var notifyDefault = 7
     
     init() {
         self.authorizationStatus = locationManager.authorizationStatus
@@ -188,7 +199,7 @@ class Around: ObservableObject {
             self.elapsedTime += 1
             os_log("Elapsed time: %d", log: OSLog.screen, type: .debug, self.elapsedTime)
             // notify the user to look around at the 5th iteration
-            if self.elapsedTime == 5 {
+            if self.elapsedTime == self.notifyAfterInSeconds {
                 os_log("Notifying the user to look around", log: OSLog.around, type: .debug)
                 notificationManager.sendLookAroundNotification()
                 stopTrackingScreenStatus()
@@ -210,6 +221,10 @@ class Around: ObservableObject {
             self.screenTrackingTimer?.invalidate()
             self.screenStatusTrackingHasStarted = false
         }
+    }
+    
+    private func setNotificationTime(_ time: Int16) {
+        
     }
     
     private func stopTrackingActivityType() {
